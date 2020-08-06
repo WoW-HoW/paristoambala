@@ -1,0 +1,29 @@
+button{
+  margin-left:400px ;
+  margin-top: 50px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.raf{
+  z-index: 2;
+  max-height: 45px;
+  max-width: 45px;
+}
+
+
+.smallcs{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-color: #0 !important;
+  border-width: 10px !important;
+  border: solid;
+  z-index: 2;
+  transition:top 1s,left 1s;
+}
