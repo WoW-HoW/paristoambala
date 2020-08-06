@@ -1,127 +1,118 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import './index.css'
 import abc from './st.js'
-import Rafale from './design/rafale_path.png'
-import Plane from "./design/plane.png"
-class App extends React.Component {
+// import { useSelector } from 'react-redux';
+
+class Home extends React.Component {
 	
 	constructor(props) {
 		super(props);
 		this.state ={
 			abc,
-			xd:0,
-			left:['7%','7%','7%','7%','7%','7%'],
-			top:['10%','10%','10%','10%','10%','10%'],
+			xd:1,
+			left:'93%',
+			top:'47%',
 		};
 	}
-
 	render() {
+		//const skins=useSelector( state => state.abc)
 		let bbb=this.state.xd
-		const pp=[[
-		['84.5%','7%','7%','7%','7%'],['68.5%','10%','10%','10%','10%']],[
-		['84.5%','7%','7%','7%','7%'],['68.5%','10%','10%','10%','10%']],[
-		['84.5%','84.5%','7%','7%','7%'],['68.5%','68.5%','10%','10%','10%']],[
-		['84.5%','84.5%','84.5%','7%','7%'],['68.5%','68.5%','68.5%','10%','10%']],[
-		['84.5%','84.5%','84.5%','84.5%','7%'],['68.5%','68.5%','68.5%','68.5%','10%']],[
-		['84.5%','84.5%','84.5%','84.5%','84.5%'],['68.5%','68.5%','68.5%','68.5%','68.5%']]
-		]
-		const handleClick=(e)=>{
-			let xy=Math.min(5,bbb+1)
+		let aaa=this.state.abc[bbb];
+		const pp=[['86%','70%'],['93%','47%'],['73%','2%'],['13%','2%'],['-7%','45%'],['25%','88%'],['72%','84%']]
+		const handleInc=(e)=>{
+			let xy=Math.min(6,bbb+1)
 			this.setState({
 				xd:xy,
 				left:pp[xy][0],
 				top:pp[xy][1],
 			});
-
-				
-			}
-
-		
-		var sectionStyle = {
-			position:"absolute",
-			width: "1300px",
-			height: "768px",
-			backgroundImage: `url(${Rafale})`
-		};
-		var styll0 ={
-			top:this.state.top[0],
-			left:this.state.left[0],
-			color: this.state.abc[0].fcol,
-			position:"absolute"
 		}
-		var styll1 ={
-			top:this.state.top[1],
-			left:this.state.left[1],
-			color: this.state.abc[1].fcol,
-			position:"absolute"
+		const handleDec=(e)=>{
+			let xx=Math.max(1,bbb-1)
+			this.setState({
+				xd:xx,
+				left:pp[xx][0],
+				top:pp[xx][1],
+			});
 		}
-		var styll2 ={
-			top:this.state.top[2],
-			left:this.state.left[2],
-			color: this.state.abc[2].fcol,
-			position:"absolute"
-		}
-		var styll3 ={
-			top:this.state.top[3],
-			left:this.state.left[3],
-			color: this.state.abc[3].fcol,
-			position:"absolute"
-		}
-		var styll4 ={
-			top:this.state.top[4],
-			left:this.state.left[4],
-			color: this.state.abc[4].fcol,
-			position:"absolute"
-		}
-		
-		if(this.state.xd===5){
-		
-		 return (
-		 	
-		 	<h1>All Rafale Planes Delivered</h1>
-		 	) 
-		}
+		const styll={
+				height:bbb*18,
+				position: 'relative',
+				zIndex:'2',
+				backgroundColor: aaa.fcol
+				}
 		return (
-			<div id="App">
-
-			<section style={ sectionStyle }>
-     		<div>
+		
+			<div className="row">
+				<div className="boxed col s12 m3 offset-m1">
 					<img 
-						alt="plane1"
-						src={Plane}
-						className="smallcs" 
-						style={styll0}>
-					</img>
-					<img 
-					alt="plane2"
-						src={Plane}
-						className="smallcs" 
-						style={styll1}>
-					</img>
-					<img 
-					alt="plane3"
-						src={Plane}
-						className="smallcs" 
-						style={styll2}>
-					</img>
-					<img 
-					alt="plane4"
-						src={Plane}
-						className="smallcs" 
-						style={styll3}>
-					</img>
-					<img 
-					alt="plane5"
-						src={Plane}
-						className="smallcs" 
-						style={styll4}>
-					</img>
-					
+					alt="collection_logo" 
+					src={aaa.logo} 
+					id='cl'
+					/>
+					<p id="coll">
+					{aaa.collection}
+					</p>
+					<h3 
+					id="name" 
+					style={{color:aaa.fcol}}>{aaa.name}
+					</h3>
+					<p 
+					id='tag'>{aaa.tag}
+					</p>
+					<p 
+					id="price">${aaa.price}*
+					</p>      
+					<div className="parentElement">  
+						<NavLink 
+						to="/market/akfs" 
+						className="btn waves-effect waves-light" 
+						style={{backgroundColor:aaa.fcol}}>
+						<p 
+						id="aa">Buy Now
+						</p>
+						</NavLink>
 					</div>
-     		</section>
-			<button onClick={handleClick} className="launch" >Launch Rafale</button>
+				</div>
+					<div className="dot col s12 offset-m1 offset-s0" 
+					style={{
+						border: '1px solid #527F5D',
+						backgroundImage: aaa.grad,
+						}}>
+			<img 
+			alt="skin_image" 
+			src={aaa.skin} 
+			className="img-responsive" 
+			id='skin'/>
+			<div 
+				className="inner-circle" 
+				style={{borderColor: aaa.fcol}}>
+					<div 
+						className="smallcs" 
+						style={{top:this.state.top,
+								left:this.state.left,
+								color: aaa.fcol}}>
+					</div>
+				</div>
 			</div>
+			<div className="controller right">
+				<div className="fillbar" 
+					style={styll}>
+			</div>
+			<button 
+			id="add" 
+			onClick={handleInc} 
+			className="btn-small waves-effect waves-light white">{bbb}
+			</button>
+			<button 
+			id="sub" 
+			onClick={handleDec} 
+			className="btn-small waves-effect waves-light white">6
+			</button>
+		</div>
+	</div>
 		)
 	}
 }
-export default App
+export default Home
